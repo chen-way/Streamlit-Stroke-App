@@ -156,7 +156,7 @@ def make_prediction(user_input):
     if prediction_proba > 0.3:
         risk_level = "High"
         risk_class = "risk-high"
-        advice_message = "**⚠️ Consider making healthy lifestyle changes!**"
+        advice_message = "**⚠️ Consider making healthy lifestyle changes! <br> Please take a look at the health tips below! **"
     else:
         risk_level = "Low"
         risk_class = "risk-low"
