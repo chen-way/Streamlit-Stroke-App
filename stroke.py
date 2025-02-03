@@ -189,7 +189,7 @@ exercise_tips = [
 def main():
 
     st.markdown("""
-    <style>
+    <style.
         .css-18e3th9 {
             margin-top: -50px;
         }
@@ -197,6 +197,9 @@ def main():
     """, unsafe_allow_html=True)
     
     st.title("🩺 Stroke Prediction Model")
+
+    # Adding space between the title and user input using <br>
+    st.markdown("<br>"*3, unsafe_allow_html=True)  # Adjust the number for more or less space
 
     user_input = get_user_input()
 
