@@ -221,6 +221,7 @@ def main():
         if st.session_state.exercise_tip:
             st.success(st.session_state.exercise_tip)
 
+# Check this out!
 st.markdown("### 📢 Check this out!")
 st.markdown("#### https://www.health.harvard.edu/womens-health/8-things-you-can-do-to-prevent-a-stroke")
 
