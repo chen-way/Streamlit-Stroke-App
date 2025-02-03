@@ -220,6 +220,9 @@ def main():
         # Always display exercise tip if it exists
         if st.session_state.exercise_tip:
             st.success(st.session_state.exercise_tip)
+# Footer
+st.sidebar.markdown("---")
+st.sidebar.write("⚠️ **Disclaimer:** This tool is for educational purposes and should not replace professional medical advice.")
 
 if __name__ == '__main__':
     main()
