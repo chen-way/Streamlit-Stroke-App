@@ -11,7 +11,7 @@ import time
 import random
 
 # Load dataset
-uploaded = "C:\Users\shupa\Downloads\stroke_data.csv"  # Replace with actual data path
+uploaded = r"C:\Users\shupa\Downloads\stroke_data.csv"
 df = pd.read_csv(uploaded)
 
 # Prepare features and target
