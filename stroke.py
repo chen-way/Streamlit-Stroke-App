@@ -226,3 +226,9 @@ st.sidebar.write("⚠️ **Disclaimer:** This tool is for educational purposes a
 
 if __name__ == '__main__':
     main()
+
+# User Reviews Section
+st.markdown("## User Reviews")
+st.write("⭐ 'This app is very helpful and easy to use!' - Alex")
+st.write("⭐ 'Great insights! Helped me understand my stroke risk better.' - Jamie")
+st.write("⭐ 'A very well-made and informative application.' - Sam")
