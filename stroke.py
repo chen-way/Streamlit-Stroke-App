@@ -10,19 +10,9 @@ from sklearn.compose import ColumnTransformer
 import time
 import random
 
-uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
-
-# Check if a file is uploaded
-if uploaded_file is not None:
-    # Read CSV file into pandas DataFrame
-    df = pd.read_csv(uploaded_file)
-
-    # Display the first few rows
-    st.write("### Data Preview")
-    st.write(df.head())
-
-else:
-    st.warning("Please upload a CSV file to proceed.")
+# Load dataset
+uploaded = 'stroke_data.csv'  # Replace with actual data path
+df = pd.read_csv(uploaded)
 
 # Prepare features and target
 X = df.drop('stroke', axis=1)
