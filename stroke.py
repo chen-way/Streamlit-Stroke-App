@@ -202,8 +202,6 @@ def main():
         st.session_state.prediction_result
 
     st.header("💡 Health Tips")
-    st.markdown("#### 📢 Check this out!")
-    st.markdown("##### https://www.health.harvard.edu/womens-health/8-things-you-can-do-to-prevent-a-stroke")
 
     col1, col2 = st.columns(2)
     
@@ -222,6 +220,10 @@ def main():
         # Always display exercise tip if it exists
         if st.session_state.exercise_tip:
             st.success(st.session_state.exercise_tip)
+
+ st.markdown("### 📢 Check this out!")
+    st.markdown("#### https://www.health.harvard.edu/womens-health/8-things-you-can-do-to-prevent-a-stroke")
+
 # Footer
 st.sidebar.markdown("---")
 st.sidebar.write("⚠️ **Disclaimer:** This tool is for educational purposes and should not replace professional medical advice.")
