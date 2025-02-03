@@ -187,6 +187,15 @@ exercise_tips = [
 
 # Main app layout
 def main():
+
+    st.markdown("""
+    <style>
+        .css-18e3th9 {
+            margin-top: -50px;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+    
     st.title("🩺 Stroke Prediction Model")
 
     user_input = get_user_input()
