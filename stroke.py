@@ -227,6 +227,9 @@ st.sidebar.write("⚠️ **Disclaimer:** This tool is for educational purposes a
 if __name__ == '__main__':
     main()
 
+# Separator line
+st.markdown("---")
+
 # User Reviews Section
 st.markdown("## User Reviews")
 st.write("⭐ 'This app is very helpful and easy to use!' - Alex")
