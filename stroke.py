@@ -202,7 +202,7 @@ def main():
         st.session_state.prediction_result
 
     st.header("💡 Health Tips")
-    st.markdown("### Check this out!")
+    st.markdown("#### 📢 Check this out! <br> https://www.health.harvard.edu/womens-health/8-things-you-can-do-to-prevent-a-stroke")
 
     col1, col2 = st.columns(2)
     
