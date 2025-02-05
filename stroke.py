@@ -188,7 +188,7 @@ exercise_tips = [
 # Main app layout
 def main():
     
-    st.title("🩺 Stroke Prediction Model")
+    st.title("Stroke Prediction Model")
 
     # Adding space between the title and user input using <br>
     st.markdown("<br>"*1, unsafe_allow_html=True)  # Adjust the number for more or less space
