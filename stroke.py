@@ -242,6 +242,6 @@ st.markdown("---")
 
 # User Reviews Section
 st.markdown("## 💭 User Reviews")
-st.write("⭐ 'This app is very helpful and easy to use!' - Asiyah")
-st.write("⭐ 'Great insights! Helped me understand my stroke risk better.' - Xiaomeng")
-st.write("⭐ 'A very well-made and informative application.' - Crystal")
+st.write("⭐ 'This app is very helpful and easy to use!' - Asiyah A.")
+st.write("⭐ 'Great insights! Helped me understand my stroke risk better.' - Xiaomeng W.")
+st.write("⭐ 'A very well-made and informative application.' - Crystal W.")
