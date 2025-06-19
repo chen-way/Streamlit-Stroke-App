@@ -15,6 +15,29 @@ import os
 # Securely access the API key from secrets
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
+ALLOWED_TOPICS = ["stroke", "bmi", "hypertension", "heart disease", "smoking", "diet", "exercise", "glucose", "risk factors", "cholesterol", "blood pressure"]
+def is_medical_question(prompt):
+    prompt = prompt.lower()
+    return any(topic in prompt for topic in ALLOWED_TOPICS)
+
+def gpt_medical_response(prompt):
+    if not is_medical_question(prompt):
+        return "❌ I can only answer health-related questions, especially about stroke, hypertension, diet, and exercise."
+
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-4",  # or "gpt-3.5-turbo"
+            messages=[
+                {"role": "system", "content": "You are a helpful and medically-informed assistant. Only answer medical questions related to stroke prevention, diet, exercise, hypertension, BMI, and heart health. Do not answer unrelated topics."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.5
+        )
+        return response['choices'][0]['message']['content']
+    except Exception as e:
+        return f"⚠️ Error: {str(e)}"
+
+
 # Load dataset
 uploaded = 'stroke_data.csv'  # Replace with actual data path
 df = pd.read_csv(uploaded)
@@ -234,6 +257,17 @@ def main():
     st.markdown("## 📢 Check this out!")
     st.markdown("##### https://www.health.harvard.edu/womens-health/8-things-you-can-do-to-prevent-a-stroke")
 
+st.markdown("---")
+st.markdown("## 🤖 Medical Assistant Chatbot")
+
+if prompt := st.chat_input("Ask a medical question related to stroke, diet, or exercise!"):
+    with st.chat_message("user"):
+        st.markdown(prompt)
+
+    response = gpt_medical_response(prompt)
+
+    with st.chat_message("assistant"):
+        st.markdown(response)
 
 # Footer
 st.sidebar.markdown("---")
