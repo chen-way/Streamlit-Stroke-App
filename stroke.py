@@ -13,7 +13,7 @@ from openai import OpenAI
 import os
 
 # Securely access the API key from secrets
-client = OpenAI()
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 ALLOWED_TOPICS = ["stroke", "bmi", "hypertension", "heart disease", "smoking", "diet", "exercise", "glucose", "risk factors", "cholesterol", "blood pressure"]
 def is_medical_question(prompt):
