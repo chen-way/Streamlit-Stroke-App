@@ -1,4 +1,3 @@
-pip install openai==0.27.8
 import streamlit as st
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
@@ -14,15 +13,17 @@ import openai
 from openai import OpenAI
 import os
 
+# Set the OpenAI API key securely from Streamlit secrets
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
+# Optional debug info – you can remove this in production
 st.write("OpenAI package version:", openai.__version__)
-st.write("OPENAI_API_KEY is set:", "OPENAI_API_KEY" in os.environ)
-st.write("OPENAI_API_KEY value:", os.environ.get("OPENAI_API_KEY"))
+st.write("OPENAI_API_KEY is set:", bool(openai.api_key))
+st.write("OPENAI_API_KEY value:", openai.api_key[:8] + "..." if openai.api_key else "Not Set")
 
-# Securely access the API key from secrets
-client = OpenAI()
-
+# Define allowed topics for filtering
 ALLOWED_TOPICS = ["stroke", "bmi", "hypertension", "heart disease", "smoking", "diet", "exercise", "glucose", "risk factors", "cholesterol", "blood pressure"]
+
 def is_medical_question(prompt):
     prompt = prompt.lower()
     return any(topic in prompt for topic in ALLOWED_TOPICS)
@@ -32,18 +33,18 @@ def gpt_medical_response(prompt):
         return "❌ I can only answer health-related questions, especially about stroke, hypertension, diet, and exercise."
 
     try:
-        response = client.chat.completions.create(
-            model="gpt-4",
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",  # use gpt-4 if you have access
             messages=[
                 {"role": "system", "content": "You are a helpful and medically-informed assistant. Only answer medical questions related to stroke prevention, diet, exercise, hypertension, BMI, and heart health. Do not answer unrelated topics."},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.5
         )
-        return response.choices[0].message.content
+        return response['choices'][0]['message']['content']
     except Exception as e:
         return f"⚠️ Error: {str(e)}"
-
+        
 # Load dataset
 uploaded = 'stroke_data.csv'  # Replace with actual data path
 df = pd.read_csv(uploaded)
