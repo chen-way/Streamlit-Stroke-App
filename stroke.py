@@ -9,6 +9,7 @@ from imblearn.pipeline import Pipeline as ImbPipeline
 from sklearn.compose import ColumnTransformer
 import time
 import random
+import openai
 from openai import OpenAI
 import os
 
