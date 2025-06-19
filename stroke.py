@@ -15,6 +15,50 @@ import os
 st.sidebar.title("Navigation")
 page = st.sidebar.radio("Go to", ["🏥 Stroke Prediction", "💬 Medical Chatbot"])
 
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-color: #e5f3fd !important; /* Light Blue Background */
+    }
+    body {
+        background-color: #f4f4f4;
+    }
+    .stButton>button {
+        background-color: #d1e5f4 !important;
+        color: black !important;
+        border-radius: 8px;
+        font-size: 16px;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .stButton>button:hover {
+        background-color: #93BCDC !important;
+        color: black !important;
+    }
+    .stSelectbox select {
+        background-color: #FDF6E7 !important;
+        color: black !important;
+    }
+    .stSidebar, .stDataFrame, .css-1r6slb0, .css-1v3fvcr {
+        background-color: #FDF6E7 !important;
+    }
+    header {visibility: hidden;}
+    .stProgress>div>div {
+        background: linear-gradient(to right, #B3E5FC, #1E5A96) !important;
+    }
+    .risk-text {
+        font-weight: bold;
+        font-size: 18px;
+        padding: 5px;
+    }
+    .risk-high { color: red !important; }
+    .risk-low { color: green !important; }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # Set the OpenAI API key securely from Streamlit secrets
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
@@ -84,51 +128,6 @@ if page == "🏥 Stroke Prediction":
         'sex', 'age', 'hypertension', 'heart_disease', 'ever_married',
         'work_type', 'Residence_type', 'avg_glucose_level', 'bmi', 'smoking_status'
     ]
-    
-    # Custom Styling
-    st.markdown(
-        """
-        <style>
-        .stApp {
-            background-color: #e5f3fd !important; /* Light Blue Background */
-        }
-        body {
-            background-color: #f4f4f4;
-        }
-        .stButton>button {
-            background-color: #d1e5f4 !important; /* Light Blue Background */
-            color: black !important;
-            border-radius: 8px;
-            font-size: 16px;
-            padding: 10px 20px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .stButton>button:hover {
-            background-color: #93BCDC !important; /* Lighter blue on hover */
-            color: black !important;
-        }
-        .stSelectbox select {
-            background-color: #FDF6E7 !important;  /* Cream background */
-            color: black !important;  /* Text color */
-        }
-        .stSidebar, .stDataFrame, .css-1r6slb0, .css-1v3fvcr {
-            background-color: #FDF6E7 !important; /* Lighter blue for contrast */
-        }
-        header {visibility: hidden;}
-        .stProgress>div>div {
-            background: linear-gradient(to right, #B3E5FC, #1E5A96) !important;
-        }
-        .risk-text {
-            font-weight: bold;
-            font-size: 18px;
-            padding: 5px;
-        }
-        .risk-high { color: red !important; }
-        .risk-low { color: green !important; }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
     
     # Initialize session state variables
     if 'prediction_result' not in st.session_state:
