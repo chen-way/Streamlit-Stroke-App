@@ -12,6 +12,8 @@ import random
 from openai import OpenAI
 import os
 
+st.write("OPENAI_API_KEY is set:", "OPENAI_API_KEY" in os.environ)
+
 # Securely access the API key from secrets
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
