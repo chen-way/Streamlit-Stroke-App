@@ -26,17 +26,16 @@ def gpt_medical_response(prompt):
 
     try:
         response = client.chat.completions.create(
-    model="gpt-4",
-    messages=[
-        {"role": "system", "content": "You are a helpful and medically-informed assistant. Only answer medical questions related to stroke prevention, diet, exercise, hypertension, BMI, and heart health. Do not answer unrelated topics."},
-        {"role": "user", "content": prompt}
-    ],
-    temperature=0.5
-)
-return response.choices[0].message.content
+            model="gpt-4",
+            messages=[
+                {"role": "system", "content": "You are a helpful and medically-informed assistant. Only answer medical questions related to stroke prevention, diet, exercise, hypertension, BMI, and heart health. Do not answer unrelated topics."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.5
+        )
+        return response.choices[0].message.content
     except Exception as e:
         return f"⚠️ Error: {str(e)}"
-
 
 # Load dataset
 uploaded = 'stroke_data.csv'  # Replace with actual data path
