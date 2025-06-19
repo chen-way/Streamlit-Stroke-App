@@ -9,11 +9,11 @@ from imblearn.pipeline import Pipeline as ImbPipeline
 from sklearn.compose import ColumnTransformer
 import time
 import random
-import openai
+from openai import OpenAI
 import os
 
 # Securely access the API key from secrets
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+client = OpenAI()
 
 ALLOWED_TOPICS = ["stroke", "bmi", "hypertension", "heart disease", "smoking", "diet", "exercise", "glucose", "risk factors", "cholesterol", "blood pressure"]
 def is_medical_question(prompt):
@@ -25,15 +25,15 @@ def gpt_medical_response(prompt):
         return "❌ I can only answer health-related questions, especially about stroke, hypertension, diet, and exercise."
 
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-4",  # or "gpt-3.5-turbo"
-            messages=[
-                {"role": "system", "content": "You are a helpful and medically-informed assistant. Only answer medical questions related to stroke prevention, diet, exercise, hypertension, BMI, and heart health. Do not answer unrelated topics."},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.5
-        )
-        return response['choices'][0]['message']['content']
+        response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[
+        {"role": "system", "content": "You are a helpful and medically-informed assistant. Only answer medical questions related to stroke prevention, diet, exercise, hypertension, BMI, and heart health. Do not answer unrelated topics."},
+        {"role": "user", "content": prompt}
+    ],
+    temperature=0.5
+)
+return response.choices[0].message.content
     except Exception as e:
         return f"⚠️ Error: {str(e)}"
 
