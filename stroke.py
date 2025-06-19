@@ -12,6 +12,8 @@ import random
 from openai import OpenAI
 import os
 
+
+st.write("OpenAI package version:", openai.__version__)
 st.write("OPENAI_API_KEY is set:", "OPENAI_API_KEY" in os.environ)
 st.write("OPENAI_API_KEY value:", os.environ.get("OPENAI_API_KEY"))
 
