@@ -16,7 +16,7 @@ st.write("OPENAI_API_KEY is set:", "OPENAI_API_KEY" in os.environ)
 st.write("OPENAI_API_KEY value:", os.environ.get("OPENAI_API_KEY"))
 
 # Securely access the API key from secrets
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+client = OpenAI()
 
 ALLOWED_TOPICS = ["stroke", "bmi", "hypertension", "heart disease", "smoking", "diet", "exercise", "glucose", "risk factors", "cholesterol", "blood pressure"]
 def is_medical_question(prompt):
