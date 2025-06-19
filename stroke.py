@@ -267,6 +267,13 @@ if page == "🏥 Stroke Prediction":
         st.markdown("##### https://www.health.harvard.edu/womens-health/8-things-you-can-do-to-prevent-a-stroke")
 
     main()
+
+  # Separator line and User Reviews (Only on Stroke Prediction Page)
+    st.markdown("---")
+    st.markdown("## 💭 User Reviews")
+    st.write("⭐ 'This app is very helpful and easy to use!' - Asiyah A.")
+    st.write("⭐ 'Great insights! Helped me understand my stroke risk better.' - Xiaomeng W.")
+    st.write("⭐ 'A very well-made and informative application.' - Crystal W.")
     
 # =====================================
 # 💬 Medical Chatbot Tab
@@ -286,12 +293,4 @@ elif page == "💬 Medical Chatbot":
 st.sidebar.markdown("---")
 st.sidebar.write("⚠️ **Disclaimer:** This tool is for educational purposes and should not replace professional medical advice.")
 
-# Separator line
-st.markdown("---")
-
-# User Reviews Section
-st.markdown("## 💭 User Reviews")
-st.write("⭐ 'This app is very helpful and easy to use!' - Asiyah A.")
-st.write("⭐ 'Great insights! Helped me understand my stroke risk better.' - Xiaomeng W.")
-st.write("⭐ 'A very well-made and informative application.' - Crystal W.")
 
