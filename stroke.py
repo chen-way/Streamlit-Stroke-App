@@ -1,3 +1,4 @@
+pip install openai==0.27.8
 import streamlit as st
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
