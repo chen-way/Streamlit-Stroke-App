@@ -10,7 +10,6 @@ from sklearn.compose import ColumnTransformer
 import time
 import random
 import openai
-from openai import OpenAI
 import os
 
 # Set the OpenAI API key securely from Streamlit secrets
