@@ -12,293 +12,197 @@ warnings.filterwarnings('ignore')
 
 # SINGLE, CLEAN CSS SECTION - NO CONFLICTS
 st.markdown("""
-    <style>
-    /* Light blue background */
-    .stApp {
-        background-color: #e5f3fd !important;
-    }
-    
-    .main {
-        background-color: #e5f3fd !important;
-    }
-    
-    /* Custom header styling */
-    .main-header {
-        background-color: #d1e5f4 !important;
-        padding: 2rem;
-        border-radius: 15px;
-        text-align: center;
-        margin-bottom: 2rem;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        border: 1px solid #93BCDC;
-    }
-    
-    .main-header h1 {
-        color: #2d3436 !important;
-        font-size: 3rem !important;
-        font-weight: 700 !important;
-        margin-bottom: 0.5rem !important;
-    }
-    
-    .main-header p {
-        color: #636e72 !important;
-        font-size: 1.2rem !important;
-        font-weight: 300 !important;
-    }
-    
-    /* Feature input containers */
-    .feature-container {
-        background-color: #FDF6E7 !important;
-        padding: 1.5rem;
-        border-radius: 15px;
-        margin-bottom: 1rem;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        border: 1px solid #93BCDC;
-    }
-    
-    /* SELECT BOX STYLING */
-    .stSelectbox > div > div {
-        background-color: #FDF6E7 !important;
-        color: black !important;
-        border-radius: 10px !important;
-        border: 2px solid #93BCDC !important;
-        transition: all 0.3s ease !important;
-    }
-    
-    .stSelectbox > div > div:focus-within {
-        border-color: #d1e5f4 !important;
-        box-shadow: 0 0 0 0.2rem rgba(209, 229, 244, 0.25) !important;
-    }
+   <style>
+:root {
+  --bg:#f0f7fc;
+  --card:#ffffff;
+  --radius:16px;
+  --shadow-light:rgba(255,255,255,0.8);
+  --shadow-dark:rgba(0,0,0,0.08);
+  --primary:#4f8fd9;
+  --primary-light:#d6e8fd;
+  --accent:#ffb366;
+  --text:#2e3d49;
+  --muted:#6e7e8f;
+  --transition:0.35s cubic-bezier(.4,.2,.2,1);
+  --border:1px solid rgba(81, 122, 167, 0.2);
+  font-family: "Inter","Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
 
-    /* TEXT INPUT STYLING */
-    div[data-baseweb="input"] > div {
-        background-color: #FDF6E7 !important;
-        border: 2px solid #93BCDC !important;
-        border-radius: 10px !important;
-        color: black !important;
-        padding: 6px !important;
-    }
+body, .stApp {
+  background: var(--bg) !important;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
 
-    div[data-baseweb="input"] input {
-        background-color: transparent !important;
-        box-shadow: none !important;
-        border: none !important;
-        color: black !important;
-    }
+h1, h2, h3 {
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.35rem;
+}
 
-    div[data-baseweb="input"] > div:focus-within {
-        border-color: #d1e5f4 !important;
-        box-shadow: 0 0 0 0.2rem rgba(209, 229, 244, 0.25) !important;
-    }
+p, li, .stMarkdown {
+  line-height: 1.45;
+  font-size: 0.95rem;
+}
 
-    /* NUMBER INPUT STYLING - Complete fix for inner border */
-    div[data-testid="stNumberInput"] > div {
-        border: 2px solid #93BCDC !important;
-        border-radius: 10px !important;
-        background-color: #FDF6E7 !important;
-        height: 42px !important;
-        display: flex !important;
-        align-items: center !important;
-        flex: 1 !important;
-        padding: 0 !important;
-        overflow: hidden !important;
-    }
+.stApp .block-container {
+  padding: 1rem 1rem 2rem !important;
+  max-width: 1024px;
+  margin: 0 auto;
+}
 
-    /* Hide ANY inner div that might be creating borders */
-    div[data-testid="stNumberInput"] > div > div > div {
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
+/* Card / container styling */
+.card, .stCard, .feature-container, .tips-container {
+  background: var(--card) !important;
+  border-radius: var(--radius) !important;
+  padding: 1rem 1.25rem !important;
+  box-shadow: 0 18px 30px -10px var(--shadow-dark), 0 8px 18px -6px var(--shadow-dark), inset 0 0 0 1px rgba(81, 122, 167, 0.08);
+  border: var(--border);
+  transition: all var(--transition);
+}
 
-    div[data-testid="stNumberInput"] input[type="number"] {
-        border: none !important;
-        background: transparent !important;
-        height: 100% !important;
-        width: 100% !important;
-        padding: 0 12px !important;
-        color: black !important;
-        outline: none !important;
-        box-shadow: none !important;
-        appearance: none !important;
-        -webkit-appearance: none !important;
-        -moz-appearance: textfield !important;
-    }
+/* Header */
+.main-header {
+  background: linear-gradient(135deg, #e0f0fc 0%, #c9e6fa 60%) !important;
+  padding: 1rem 1rem !important;
+  border-radius: var(--radius);
+  text-align: center;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+  border: none !important;
+}
 
-    /* Remove focus borders completely */
-    div[data-testid="stNumberInput"] input[type="number"]:focus {
-        border: none !important;
-        outline: none !important;
-        box-shadow: none !important;
-        background: transparent !important;
-    }
+.main-header h1 {
+  font-size: 2rem !important;
+  margin: 0;
+}
 
-    /* Remove all shadows from all elements */
-    div[data-testid="stNumberInput"] *,
-    div[data-testid="stNumberInput"] *:focus,
-    div[data-testid="stNumberInput"] *:focus-within {
-        box-shadow: none !important;
-    }
+.main-header p {
+  margin: 0.25rem 0 0;
+  font-weight: 400;
+  color: var(--muted);
+}
 
-    div[data-testid="stNumberInput"] button {
-        border: none !important;
-        background: rgba(147, 188, 220, 0.2) !important;
-        height: 100% !important;
-        width: 35px !important;
-        transition: background-color 0.2s ease !important;
-        flex-shrink: 0 !important;
-    }
+/* Metric styling */
+.stMetric {
+  background: var(--primary-light) !important;
+  border-radius: 14px !important;
+  padding: 0.75rem 1rem !important;
+  box-shadow: 0 12px 24px -4px rgba(79, 143, 217, 0.2);
+  border: none !important;
+}
 
-    div[data-testid="stNumberInput"] button:hover {
-        background: rgba(147, 188, 220, 0.4) !important;
-    }
+.metric-container {
+  background: white;
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 14px 32px -6px rgba(0,0,0,0.08);
+  margin-bottom: 0.75rem;
+}
 
-    /* Button container positioning */
-    div[data-testid="stNumberInput"] > div > div:has(button) {
-        display: flex !important;
-        gap: 0 !important;
-        margin-left: auto !important;
-        width: 70px !important;
-        height: 100% !important;
-        align-items: center !important;
-        justify-content: flex-end !important;
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-    }
+/* Buttons */
+.stButton > button {
+  background: var(--primary);
+  color: white !important;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 14px 24px;
+  border: none;
+  min-height: 48px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 14px 28px -6px rgba(79, 143, 217, 0.35);
+  transition: all var(--transition);
+  cursor: pointer;
+}
+.stButton > button:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+.stButton > button:active {
+  transform: translateY(1px);
+}
 
-    /* HIDE all inner containers that create the cream border */
-    div[data-testid="stNumberInput"] > div > div:first-child {
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        height: 100% !important;
-        width: 100% !important;
-        display: flex !important;
-        align-items: center !important;
-    }
+/* Inputs & selects */
+div[data-baseweb="input"] > div,
+.stSelectbox > div > div,
+div[data-testid="stNumberInput"] > div {
+  background: #f7fbff !important;
+  border-radius: 10px !important;
+  border: 2px solid rgba(79, 143, 217, 0.25) !important;
+  padding: 10px !important;
+  transition: all var(--transition);
+}
+div[data-baseweb="input"] input,
+div[data-testid="stNumberInput"] input {
+  font-size: 15px !important;
+  background: transparent !important;
+  outline: none !important;
+}
 
-    div[data-testid="stNumberInput"]:focus-within > div {
-        border-color: #d1e5f4 !important;
-        box-shadow: none !important;
-    }
-    
-    /* Results containers */
-    .result-high-risk {
-        background-color: #ffcccb;
-        color: #d63031;
-        padding: 1.5rem;
-        border-radius: 15px;
-        text-align: center;
-        box-shadow: 0 4px 15px rgba(214, 48, 49, 0.2);
-        margin: 1rem 0;
-        border: 2px solid #ff7675;
-    }
-    
-    .result-low-risk {
-        background-color: #d4edda;
-        color: #155724;
-        padding: 1.5rem;
-        border-radius: 15px;
-        text-align: center;
-        box-shadow: 0 4px 15px rgba(21, 87, 36, 0.2);
-        margin: 1rem 0;
-        border: 2px solid #28a745;
-    }
-    
-    .result-moderate-risk {
-        background-color: #fff3cd;
-        color: #856404;
-        padding: 1.5rem;
-        border-radius: 15px;
-        text-align: center;
-        box-shadow: 0 4px 15px rgba(133, 100, 4, 0.2);
-        margin: 1rem 0;
-        border: 2px solid #ffc107;
-    }
-    
-    /* Tips section styling */
-    .tips-container {
-        background-color: #FDF6E7 !important;
-        padding: 2rem;
-        border-radius: 20px;
-        margin: 2rem 0;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        border: 1px solid #93BCDC;
-    }
-    
-    .tips-container h2 {
-        color: #2d3436 !important;
-        text-align: center;
-        margin-bottom: 1.5rem !important;
-    }
-    
-    /* Sidebar styling */
-    .stSidebar {
-        background-color: #FDF6E7 !important;
-        width: 350px !important;
-        min-width: 350px !important;
-    }
-    
-    section[data-testid="stSidebar"] {
-        width: 350px !important;
-        min-width: 350px !important;
-    }
-    
-    /* Button styling */
-    .stButton > button {
-        background-color: #d1e5f4 !important;
-        color: black !important;
-        border-radius: 8px;
-        font-size: 16px;
-        padding: 10px 20px;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        border: none;
-    }
-    
-    .stButton > button:hover {
-        background-color: #93BCDC !important;
-        color: black !important;
-    }
-    
-    /* Animation for loading */
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
-    }
-    
-    .pulse-animation {
-        animation: pulse 2s infinite;
-    }
-    
-    /* Custom metric styling */
-    .metric-container {
-        background-color: #d1e5f4;
-        padding: 1rem;
-        border-radius: 10px;
-        text-align: center;
-        margin: 0.5rem;
-        border: 1px solid #93BCDC;
-        color: #2d3436;
-    }
-    
-    /* Progress bar styling */
-    .stProgress>div>div {
-        background: linear-gradient(to right, #B3E5FC, #1E5A96) !important;
-    }
-    
-    /* Hide Streamlit default elements */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    .stDeployButton {display:none;}
-    header {visibility: hidden;}
+/* Risk boxes */
+.result-high-risk, .result-low-risk, .result-moderate-risk {
+  padding: 1rem 1rem;
+  border-radius: 14px;
+  margin: 1rem 0;
+  position: relative;
+  font-weight: 500;
+}
+.result-high-risk {
+  background: rgba(255, 102, 102, 0.1);
+  border: 1px solid #ff6b6b;
+  color: #c0392b;
+}
+.result-moderate-risk {
+  background: rgba(255, 191, 0, 0.1);
+  border: 1px solid #ffb366;
+  color: #7f6000;
+}
+.result-low-risk {
+  background: rgba(76, 209, 55, 0.1);
+  border: 1px solid #28a745;
+  color: #1b6e3a;
+}
 
-    </style>
+/* Tip badges */
+.stInfo, .stSuccess, .stWarning, .stError {
+  border-radius: 12px !important;
+  padding: 0.85rem 1rem !important;
+  font-size: 0.9rem !important;
+}
+
+/* Headers inside expanders */
+.streamlit-expanderHeader {
+  font-size: 1.05rem !important;
+  font-weight: 600;
+}
+
+/* Footer / resource section */
+footer, .footer {
+  display: none;
+}
+
+/* Subtle floating accent animation */
+.pulse-animation {
+  animation: pulse 3s ease-in-out infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(79, 143, 217, 0.2); }
+  50% { box-shadow: 0 0 25px 5px rgba(79, 143, 217, 0.15); }
+  100% { box-shadow: 0 0 0 0 rgba(79, 143, 217, 0.2); }
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+  .stButton > button {
+    width: 100% !important;
+  }
+  .card, .feature-container {
+    padding: 1rem !important;
+  }
+}
+</style>
 """, unsafe_allow_html=True)
 
 # Enhanced page configuration with custom styling
