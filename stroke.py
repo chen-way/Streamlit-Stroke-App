@@ -59,33 +59,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Set the OpenAI API key securely from Streamlit secrets
-openai.api_key = st.secrets["OPENAI_API_KEY"]
-
-# Define allowed topics for filtering
-ALLOWED_TOPICS = ["stroke", "bmi", "hypertension", "heart disease", "smoking", "diet", "exercise", "glucose", "risk factors", "cholesterol", "blood pressure"]
-
-def is_medical_question(prompt):
-    prompt = prompt.lower()
-    return any(topic in prompt for topic in ALLOWED_TOPICS)
-
-def gpt_medical_response(prompt):
-    if not is_medical_question(prompt):
-        return "❌ I can only answer health-related questions, especially about stroke, hypertension, diet, and exercise."
-
-    try:
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",  # use gpt-4 if you have access
-            messages=[
-                {"role": "system", "content": "You are a helpful and medically-informed assistant. Only answer medical questions related to stroke prevention, diet, exercise, hypertension, BMI, and heart health. Do not answer unrelated topics."},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.5
-        )
-        return response['choices'][0]['message']['content']
-    except Exception as e:
-        return f"⚠️ Error: {str(e)}"
-
 if page == "🏥 Stroke Prediction":
     # Load dataset
     uploaded = 'stroke_data.csv'  # Replace with actual data path
@@ -273,20 +246,7 @@ if page == "🏥 Stroke Prediction":
     st.write("⭐ 'This app is very helpful and easy to use!' - Asiyah A.")
     st.write("⭐ 'Great insights! Helped me understand my stroke risk better.' - Xiaomeng W.")
     st.write("⭐ 'A very well-made and informative application.' - Crystal W.")
-    
-# =====================================
-# 💬 Medical Chatbot Tab
-# =====================================
-elif page == "💬 Medical Chatbot":
-    st.title("🤖 Medical Assistant Chatbot")
-    st.markdown("Ask a question related to stroke, exercise, hypertension, diet, etc.")
 
-    if prompt := st.chat_input("Ask your question here..."):
-        with st.chat_message("user"):
-            st.markdown(prompt)
-        response = gpt_medical_response(prompt)
-        with st.chat_message("assistant"):
-            st.markdown(response)
             
 # Footer
 st.sidebar.markdown("---")
