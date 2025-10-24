@@ -52,28 +52,56 @@ required_columns = [
     'work_type', 'Residence_type', 'avg_glucose_level', 'bmi', 'smoking_status'
 ]
 
-# Custom Styling (UPDATED)
+# Custom Styling (UPDATED FIXED SIDEBAR COLORS + TEXT)
 st.markdown(
     """
     <style>
-    /* General background and text */
+    /* Main background and text */
     .stApp {
         background-color: #e5f3fd !important;
         color: black !important;
     }
-    body {
+    body, html {
         color: black !important;
         background-color: #f4f4f4 !important;
+    }
+
+    /* Sidebar background (slightly warmer cream) */
+    section[data-testid="stSidebar"] {
+        background-color: #fff6d5 !important; /* richer, warmer yellowish cream */
+        color: black !important;
+    }
+
+    /* Force black text in sidebar */
+    section[data-testid="stSidebar"] * {
+        color: black !important;
+    }
+
+    /* Sidebar input boxes, dropdowns, and text areas */
+    div[data-baseweb="select"],
+    div[data-baseweb="input"],
+    div[data-baseweb="textarea"],
+    .stNumberInput input {
+        background-color: white !important;
+        color: black !important;
+        border: 1px solid #ccc !important;
+        border-radius: 6px !important;
+    }
+
+    /* Dropdown content text */
+    div[data-baseweb="select"] * {
+        color: black !important;
+        background-color: white !important;
     }
 
     /* Buttons */
     .stButton>button {
         background-color: #ffffff !important;
         color: black !important;
+        border: 1px solid #ccc !important;
         border-radius: 8px;
         font-size: 16px;
         padding: 10px 20px;
-        border: 1px solid #ccc;
         transition: background-color 0.3s ease, color 0.3s ease;
     }
     .stButton>button:hover {
@@ -81,41 +109,12 @@ st.markdown(
         color: black !important;
     }
 
-    /* Sidebar */
-    .stSidebar {
-        background-color: #ffffff !important;
-        color: black !important;
-    }
-
-    /* Sidebar input boxes and dropdowns */
-    .stSelectbox select, .stNumberInput input, .stTextInput input, .stTextArea textarea {
-        background-color: white !important;
-        color: black !important;
-        border: 1px solid #ccc !important;
-        border-radius: 5px !important;
-    }
-
-    /* Dropdown arrow */
-    .stSelectbox div[data-baseweb="select"] {
-        background-color: white !important;
-        color: black !important;
-    }
-
-    /* Dataframe, progress bar, and other containers */
-    .stDataFrame, .css-1r6slb0, .css-1v3fvcr {
-        background-color: #ffffff !important;
-        color: black !important;
-    }
-
-    /* Hide header */
-    header {visibility: hidden;}
-
     /* Progress bar */
     .stProgress>div>div {
         background: linear-gradient(to right, #B3E5FC, #1E5A96) !important;
     }
 
-    /* Risk text colors */
+    /* Risk level text */
     .risk-text {
         font-weight: bold;
         font-size: 18px;
@@ -124,6 +123,9 @@ st.markdown(
     }
     .risk-high { color: red !important; }
     .risk-low { color: green !important; }
+
+    /* Hide the Streamlit default header */
+    header {visibility: hidden;}
     </style>
     """,
     unsafe_allow_html=True,
@@ -262,3 +264,4 @@ st.markdown("## 💭 User Reviews")
 st.write("⭐ 'This app is very helpful and easy to use!' - Asiyah A.")
 st.write("⭐ 'Great insights! Helped me understand my stroke risk better.' - Xiaomeng W.")
 st.write("⭐ 'A very well-made and informative application.' - Crystal W.")
+
