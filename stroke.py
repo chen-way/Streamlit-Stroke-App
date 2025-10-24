@@ -52,43 +52,75 @@ required_columns = [
     'work_type', 'Residence_type', 'avg_glucose_level', 'bmi', 'smoking_status'
 ]
 
-# Custom Styling
+# Custom Styling (UPDATED)
 st.markdown(
     """
     <style>
+    /* General background and text */
     .stApp {
-        background-color: #e5f3fd !important; /* Light Blue Background */
+        background-color: #e5f3fd !important;
+        color: black !important;
     }
     body {
-        background-color: #f4f4f4;
+        color: black !important;
+        background-color: #f4f4f4 !important;
     }
+
+    /* Buttons */
     .stButton>button {
-        background-color: #d1e5f4 !important; /* Light Blue Background */
+        background-color: #ffffff !important;
         color: black !important;
         border-radius: 8px;
         font-size: 16px;
         padding: 10px 20px;
+        border: 1px solid #ccc;
         transition: background-color 0.3s ease, color 0.3s ease;
     }
     .stButton>button:hover {
-        background-color: #93BCDC !important; /* Lighter blue on hover */
+        background-color: #d1e5f4 !important;
         color: black !important;
     }
-    .stSelectbox select {
-        background-color: #FDF6E7 !important;  /* Cream background */
-        color: black !important;  /* Text color */
+
+    /* Sidebar */
+    .stSidebar {
+        background-color: #ffffff !important;
+        color: black !important;
     }
-    .stSidebar, .stDataFrame, .css-1r6slb0, .css-1v3fvcr {
-        background-color: #FDF6E7 !important; /* Lighter blue for contrast */
+
+    /* Sidebar input boxes and dropdowns */
+    .stSelectbox select, .stNumberInput input, .stTextInput input, .stTextArea textarea {
+        background-color: white !important;
+        color: black !important;
+        border: 1px solid #ccc !important;
+        border-radius: 5px !important;
     }
+
+    /* Dropdown arrow */
+    .stSelectbox div[data-baseweb="select"] {
+        background-color: white !important;
+        color: black !important;
+    }
+
+    /* Dataframe, progress bar, and other containers */
+    .stDataFrame, .css-1r6slb0, .css-1v3fvcr {
+        background-color: #ffffff !important;
+        color: black !important;
+    }
+
+    /* Hide header */
     header {visibility: hidden;}
+
+    /* Progress bar */
     .stProgress>div>div {
         background: linear-gradient(to right, #B3E5FC, #1E5A96) !important;
     }
+
+    /* Risk text colors */
     .risk-text {
         font-weight: bold;
         font-size: 18px;
         padding: 5px;
+        color: black !important;
     }
     .risk-high { color: red !important; }
     .risk-low { color: green !important; }
@@ -132,9 +164,9 @@ def get_user_input():
         'smoking_status': int(smoking_status)
     }
 
-    # Display data in a light blue box
+    # Display data box
     user_data_html = f"""
-    <div style="background-color:#d1e5f4; padding: 20px; border-radius: 10px; color: black;">
+    <div style="background-color:white; padding: 20px; border-radius: 10px; color: black; border: 1px solid #ccc;">
         <h4>User Input Data:</h4>
         <ul>
             {"".join([f"<li><strong>{key}:</strong> {value}</li>" for key, value in user_data.items()])}
@@ -143,7 +175,7 @@ def get_user_input():
     """
 
     st.markdown(user_data_html, unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)  # Blank lines for space
+    st.markdown("<br>", unsafe_allow_html=True)
     
     return user_data
 
@@ -168,7 +200,7 @@ def make_prediction(user_input):
     if risk_level == "High":
         st.markdown(f'<p class="risk-high">{advice_message}</p>', unsafe_allow_html=True)
 
-# Diet & Exercise Tips Section
+# Tips
 diet_tips = [
     "🥦 Eat a balanced diet with plenty of fruits and vegetables.",
     "💧 Drink at least 8 glasses of water daily.",
@@ -187,48 +219,36 @@ exercise_tips = [
 
 # Main app layout
 def main():
-    
     st.title("Stroke Prediction Model")
-
-    # Adding space between the title and user input using <br>
-    st.markdown("<br>"*1, unsafe_allow_html=True)  # Adjust the number for more or less space
+    st.markdown("<br>"*1, unsafe_allow_html=True)
 
     user_input = get_user_input()
 
-    # Prediction section
     if st.button('🔍 Predict Stroke Risk'):
         with st.spinner('Analyzing data...'):
             time.sleep(1)
             st.session_state.prediction_result = make_prediction(user_input)
 
-    # Display prediction if it exists
     if st.session_state.prediction_result is not None:
         st.session_state.prediction_result
 
     st.header("💡 Health Tips")
 
     col1, col2 = st.columns(2)
-    
     with col1:
         if st.button("🍏 Get a Diet Tip"):
             st.session_state.diet_tip = random.choice(diet_tips)
-
-        # Always display diet tip if it exists
         if st.session_state.diet_tip:
             st.success(st.session_state.diet_tip)
     
     with col2:
         if st.button("🏋️ Get an Exercise Tip"):
             st.session_state.exercise_tip = random.choice(exercise_tips)
-
-        # Always display exercise tip if it exists
         if st.session_state.exercise_tip:
             st.success(st.session_state.exercise_tip)
 
-    # Check this out! section moved below health tips
     st.markdown("## 📢 Check this out!")
     st.markdown("##### https://www.health.harvard.edu/womens-health/8-things-you-can-do-to-prevent-a-stroke")
-
 
 # Footer
 st.sidebar.markdown("---")
@@ -237,10 +257,7 @@ st.sidebar.write("⚠️ **Disclaimer:** This tool is for educational purposes a
 if __name__ == '__main__':
     main()
 
-# Separator line
 st.markdown("---")
-
-# User Reviews Section
 st.markdown("## 💭 User Reviews")
 st.write("⭐ 'This app is very helpful and easy to use!' - Asiyah A.")
 st.write("⭐ 'Great insights! Helped me understand my stroke risk better.' - Xiaomeng W.")
