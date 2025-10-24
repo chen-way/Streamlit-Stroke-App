@@ -129,6 +129,62 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+st.markdown("""
+<style>
+/* Make entire app text black */
+html, body, [class*="css"] {
+    color: black !important;
+}
+
+/* Sidebar background */
+section[data-testid="stSidebar"] {
+    background-color: white !important;
+}
+
+/* Force white dropdowns & inputs */
+div[data-baseweb="select"],
+div[data-baseweb="input"],
+div[data-baseweb="textarea"] {
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid #ccc !important;
+    border-radius: 6px !important;
+}
+
+/* Dropdown text */
+div[data-baseweb="select"] * {
+    color: black !important;
+    background-color: white !important;
+}
+
+/* Number input buttons (+ / -) */
+button[aria-label="Increment"],
+button[aria-label="Decrement"] {
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid #ccc !important;
+}
+
+/* Labels and text in sidebar */
+section[data-testid="stSidebar"] label, 
+section[data-testid="stSidebar"] p {
+    color: black !important;
+}
+
+/* Buttons */
+.stButton>button {
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid #ccc !important;
+    border-radius: 8px;
+}
+.stButton>button:hover {
+    background-color: #d1e5f4 !important;
+    color: black !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
 # Initialize session state variables
 if 'prediction_result' not in st.session_state:
     st.session_state.prediction_result = None
@@ -262,3 +318,4 @@ st.markdown("## 💭 User Reviews")
 st.write("⭐ 'This app is very helpful and easy to use!' - Asiyah A.")
 st.write("⭐ 'Great insights! Helped me understand my stroke risk better.' - Xiaomeng W.")
 st.write("⭐ 'A very well-made and informative application.' - Crystal W.")
+
