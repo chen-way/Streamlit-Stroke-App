@@ -126,6 +126,17 @@ st.markdown(
 
     /* Hide the Streamlit default header */
     header {visibility: hidden;}
+
+    /* Fix plus/minus arrow buttons in number inputs */
+div[data-baseweb="input"] button {
+    color: white !important;
+    background-color: #1a1a1a !important; /* dark button background */
+    border-radius: 4px !important;
+}
+div[data-baseweb="input"] button:hover {
+    background-color: #333 !important;
+}
+
     </style>
     """,
     unsafe_allow_html=True,
@@ -264,4 +275,5 @@ st.markdown("## 💭 User Reviews")
 st.write("⭐ 'This app is very helpful and easy to use!' - Asiyah A.")
 st.write("⭐ 'Great insights! Helped me understand my stroke risk better.' - Xiaomeng W.")
 st.write("⭐ 'A very well-made and informative application.' - Crystal W.")
+
 
