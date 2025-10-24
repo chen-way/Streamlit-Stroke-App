@@ -127,10 +127,10 @@ st.markdown(
     /* Hide the Streamlit default header */
     header {visibility: hidden;}
 
-/* Polished plus/minus buttons that match sidebar cream tone */
+/* Plus/minus buttons that match sidebar cream tone */
 div[data-testid="stNumberInput"] button {
-    background-color: #fff2b2 !important;  /* warmer yellow to match sidebar */
-    border: 1px solid #ccc !important;
+    background-color: #fff6d5 !important;  /* same as sidebar background */
+    border: none !important;  /* remove grey outline */
     border-radius: 6px !important;
     transition: background-color 0.2s ease;
 }
@@ -283,6 +283,7 @@ st.markdown("## 💭 User Reviews")
 st.write("⭐ 'This app is very helpful and easy to use!' - Asiyah A.")
 st.write("⭐ 'Great insights! Helped me understand my stroke risk better.' - Xiaomeng W.")
 st.write("⭐ 'A very well-made and informative application.' - Crystal W.")
+
 
 
 
